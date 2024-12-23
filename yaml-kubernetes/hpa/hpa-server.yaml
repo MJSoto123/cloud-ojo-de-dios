@@ -7,7 +7,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: server-detection
-  minReplicas: 2
+  minReplicas: 3
   maxReplicas: 5
   metrics:
   - type: Resource
@@ -15,4 +15,4 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 80
+        averageUtilization: 60

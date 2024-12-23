@@ -4,7 +4,7 @@ metadata:
   name: server-detection-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+    nginx.ingress.kubernetes.io/proxy-body-size: "150m"
 spec:
   ingressClassName: "nginx"
   rules:
@@ -14,27 +14,27 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: server-detection
+                name: server-service
                 port:
                   number: 5000
           - path: /videos
             pathType: Prefix
             backend:
               service:
-                name: get-video
+                name: video-service
                 port:
                   number: 5001
           - path: /upload
             pathType: Prefix
             backend:
               service:
-                name: upload-video
+                name: analytics
                 port:
                   number: 5002
           - path: /frame
             pathType: Prefix
             backend:
               service:
-                name: get-frame
+                name: frame-services
                 port:
                   number: 5003

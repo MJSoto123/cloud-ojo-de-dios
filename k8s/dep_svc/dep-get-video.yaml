@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: get-video
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: get-video
+  template:
+    metadata:
+      labels:
+        app: get-video
+    spec:
+      containers:
+        - name: get-video
+          image: mjsoto123/get-video
+          ports:
+            - containerPort: 5001
+          volumeMounts:
+            - name: video-storage
+              mountPath: /app/data
+      volumes:
+        - name: video-storage
+          persistentVolumeClaim:
+            claimName: nfs-pvc

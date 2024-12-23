@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-detection
+  annotations:
+  labels:
+    app: server-detection
+spec:
+  type: ClusterIP
+  selector:
+    app: server-detection
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5000
+      targetPort: 5000

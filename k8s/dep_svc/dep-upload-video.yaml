@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upload-video
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: upload-video
+  template:
+    metadata:
+      labels:
+        app: upload-video
+    spec:
+      containers:
+        - name: upload-video
+          image: mjsoto123/upload-video
+          ports:
+            - containerPort: 5002
+          volumeMounts:
+            - name: video-storage
+              mountPath: /app/data
+      volumes:
+        - name: video-storage
+          persistentVolumeClaim:
+            claimName: nfs-pvc

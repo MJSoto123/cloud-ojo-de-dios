@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: upload-video
+  annotations:
+  labels:
+    app: upload-video
+spec:
+  type: ClusterIP
+  selector:
+    app: upload-video
+  ports:
+    - name: http
+      protocol: TCP
+      port: 5002
+      targetPort: 5002

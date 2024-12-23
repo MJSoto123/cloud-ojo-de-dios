@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: server-detection-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: server-detection
+                port:
+                  number: 5000
+          - path: /videos
+            pathType: Prefix
+            backend:
+              service:
+                name: get-video
+                port:
+                  number: 5001
+          - path: /upload
+            pathType: Prefix
+            backend:
+              service:
+                name: upload-video
+                port:
+                  number: 5002
+          - path: /frame
+            pathType: Prefix
+            backend:
+              service:
+                name: get-frame
+                port:
+                  number: 5003
